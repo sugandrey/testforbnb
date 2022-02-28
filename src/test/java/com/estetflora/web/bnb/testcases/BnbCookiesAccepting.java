@@ -1,6 +1,7 @@
 package com.estetflora.web.bnb.testcases;
 
 import com.estetflora.web.bnb.initialization.WebDriverInit;
+import com.estetflora.web.bnb.pages.SearchResultPage;
 import com.estetflora.web.bnb.pages.StartPage;
 import com.estetflora.web.bnb.utils.PropertiesFileAccess;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +16,7 @@ public class BnbCookiesAccepting {
     private WebDriverInit webDriverInit;
     private static List<WebDriver> drivers;
     private StartPage startPage = new StartPage();
+    private SearchResultPage searchResultPage = new SearchResultPage();
 
     @BeforeTest
     public void getStartPage() {
@@ -85,12 +87,16 @@ public class BnbCookiesAccepting {
     @Test(priority = 8)
     public void clickSearchButton() {
         for (WebDriver driver : drivers) {
-            startPage.pushSearchButton(driver);
-            try {
-                Thread.sleep(6000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            searchResultPage = startPage.pushSearchButton(driver);
+        }
+    }
+
+    @Test(priority = 9)
+    public void checkSearchResultPageAppearance() {
+
+        for(WebDriver driver : drivers) {
+            searchResultPage.getTitle(driver);
+            searchResultPage.setPageText(driver);
         }
     }
 
