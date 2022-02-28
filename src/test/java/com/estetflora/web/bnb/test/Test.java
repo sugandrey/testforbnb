@@ -94,14 +94,9 @@ public class Test {
             while (attempt < 2) {
                 try {
                     if (chooseDay.equals("1")) {
-                        while (true) {
                             day.click();
-                            if (driver.findElement(By.cssSelector("div._1vo7d29j")).isDisplayed()) {
-                                break;
-                            }
+                            break;
                         }
-                    }
-                    break;
                 } catch (StaleElementReferenceException e) {
                     attempt++;
                 }
